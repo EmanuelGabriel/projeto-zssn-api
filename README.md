@@ -12,12 +12,13 @@ Você, como membro da resistência zumbi (e o último sobrevivente que sabe codi
  - Spring Data JPA
  - ModelMapper
  - Flyway
- - 
+ - OpenAPI
+ - Banco de dados em memória - H2
 
 
 
 ## Tarefas Pendentes
-  - Criar os dados de estatísticas da quantidade de sobreviventes infectados
+  - Criar os dados de estatística de quantidade de sobreviventes infectados.
   
 
 
