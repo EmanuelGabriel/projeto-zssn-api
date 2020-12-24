@@ -18,8 +18,14 @@ Você, como membro da resistência zumbi (e o último sobrevivente que sabe codi
 
 
 ## Tarefas Pendentes
-  - Criar os dados de estatística de quantidade de sobreviventes infectados.
+  - Porcentagem de sobreviventes infectados.
+  - Porcentagem de sobreviventes não infectados.
+  - Quantidade média de cada tipo de recurso por sobrevivente (por exemplo, 5 águas por sobrevivente) pontos perdidos por causa do sobrevivente infectado.
+  - Sinalizar sobrevivente como infectado.
+  - Os sobreviventes não podem adicionar/remover itens do inventário.
   
+  ### Regras de negócio:
+  - Um sobrevivente é marcado como infectado quando pelo menos três outros sobreviventes relatam sua contaminação.
 
 
 
