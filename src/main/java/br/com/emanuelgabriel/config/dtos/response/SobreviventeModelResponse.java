@@ -14,6 +14,6 @@ public class SobreviventeModelResponse {
 	private Boolean infectado;
 	private String latitude;
 	private String longitude;
-	private ItemModelResponse[] itens;
+	private ItemParcialModelResponse[] itens;
 
 }

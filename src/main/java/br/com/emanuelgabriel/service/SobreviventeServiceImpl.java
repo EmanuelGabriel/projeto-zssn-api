@@ -17,6 +17,7 @@ public class SobreviventeServiceImpl implements SobreviventeService {
 
 	private static final String SOBREVIVENTE_COD_NAO_ENCONTRADO = "Sobrevivente de código não encontrado";
 	private static final String SOBREVIVENTE_NOME_EXISTENTE = "Já existe um sobrevivente registrado com este nome";
+	private static final String CODIGO_ITENS_INEXISTENTE = "Não existe um item de recurso com este código";
 
 	@Autowired
 	private SobreviventeRepository sobreviventeRepository;
@@ -30,8 +31,10 @@ public class SobreviventeServiceImpl implements SobreviventeService {
 			throw new RegraNegocioException(SOBREVIVENTE_NOME_EXISTENTE);
 		}
 
-		sobrevivente.getItens().forEach(it -> {
-
+		sobrevivente.getItens().forEach(itens -> {
+			if (itens.getCodigo() >= 5) {
+				throw new RegraNegocioException(CODIGO_ITENS_INEXISTENTE);
+			}
 		});
 
 		sobrevivente.setInfectado(Boolean.FALSE);
@@ -40,13 +43,14 @@ public class SobreviventeServiceImpl implements SobreviventeService {
 
 	@Override
 	public List<Sobrevivente> findAll() {
-		return this.sobreviventeRepository.findAll();
+		return this.sobreviventeRepository.buscarTodos();
 	}
 
 	@Override
 	public Sobrevivente buscarPorCodigo(Long codigo) {
-		return this.sobreviventeRepository.findById(codigo)
+		return this.sobreviventeRepository.buscarPorId(codigo)
 				.orElseThrow(() -> new EntidadeNaoEncontradaException(SOBREVIVENTE_COD_NAO_ENCONTRADO));
+
 	}
 
 	@Transactional
@@ -57,6 +61,7 @@ public class SobreviventeServiceImpl implements SobreviventeService {
 			sobre.setLongitude(sobrevivente.getLongitude());
 			return this.sobreviventeRepository.save(sobre);
 		}).orElseThrow(() -> new EntidadeNaoEncontradaException(SOBREVIVENTE_COD_NAO_ENCONTRADO));
+
 	}
 
 	@Override

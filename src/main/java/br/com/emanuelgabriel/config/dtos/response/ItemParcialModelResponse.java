@@ -5,9 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ItemModelResponse {
+public class ItemParcialModelResponse {
 
-	private Long codigo;
 	private String nome;
 	private Integer pontos;
 

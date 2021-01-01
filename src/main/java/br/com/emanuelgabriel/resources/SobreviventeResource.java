@@ -76,12 +76,6 @@ public class SobreviventeResource {
 		return ResponseEntity.ok(this.sobreviventeModelMapper.toCollectionModel(sobreviventes));
 	}
 
-	// @GetMapping
-	public ResponseEntity<List<Sobrevivente>> findAll() {
-		List<Sobrevivente> sobreviventes = this.sobreviventeService.findAll();
-		return ResponseEntity.ok(sobreviventes);
-	}
-
 	@Operation(description = "Busca um sobrevivente por ID", summary = "Busca um sobrevivente por ID")
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "OK"),
 			@ApiResponse(responseCode = "400", description = "ID do sobrevivente inválido"),
@@ -120,7 +114,6 @@ public class SobreviventeResource {
 	@PatchMapping("{codigoSobrevivente}/infectado")
 	public ResponseEntity<Sobrevivente> reportarContaminacaoSobrevivente(
 			@Parameter(description = "ID de um sobrevivente", example = "1", required = true) @PathVariable Long codigoSobrevivente) {
-
 		return this.sobreviventeRepository.findById(codigoSobrevivente).map(sobrevivente -> {
 			sobrevivente = this.sobreviventeService.reportarContaminacao(sobrevivente);
 			return ResponseEntity.ok().body(sobrevivente);

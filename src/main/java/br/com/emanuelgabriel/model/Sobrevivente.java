@@ -1,13 +1,12 @@
 package br.com.emanuelgabriel.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,9 +40,11 @@ public class Sobrevivente implements Serializable {
 
 	private Boolean infectado;
 
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "sobrevivente_itens", joinColumns = @JoinColumn(name = "sobrevivente_codigo"), inverseJoinColumns = @JoinColumn(name = "item_codigo"))
-	private List<Item> itens = new ArrayList<>();
+	@ManyToMany
+	@JoinTable(name = "sobrevivente_itens", 
+	joinColumns = @JoinColumn(name = "sobrevivente_codigo"), 
+	inverseJoinColumns = @JoinColumn(name = "item_codigo"))
+	private Set<Item> itens = new HashSet<>();
 
 	public Sobrevivente() {
 	}
@@ -115,11 +116,11 @@ public class Sobrevivente implements Serializable {
 		this.infectado = infectado;
 	}
 
-	public List<Item> getItens() {
+	public Set<Item> getItens() {
 		return itens;
 	}
 
-	public void setItens(List<Item> itens) {
+	public void setItens(Set<Item> itens) {
 		this.itens = itens;
 	}
 
